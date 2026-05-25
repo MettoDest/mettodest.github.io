@@ -16,6 +16,7 @@ Se utiliza comúnmente junto con herramientas como Metasploit Framework, Nmap y 
 Diferencia clave:
 
 . ova → VM preconfigurada lista para importar (Kali)
+
 . iso → imagen de disco que requiere crear la VM manualmente (Metasploitable)
 
 ![Creación de la VM en VirtualBox](https://drive.google.com/file/d/1R5psVd6OW7xWNyGWsN9kbK47mzC3YWUA/view?usp=sharing)
