@@ -19,6 +19,6 @@ Diferencia clave:
 
 . iso → imagen de disco que requiere crear la VM manualmente (Metasploitable)
 
-![Creación de la VM en VirtualBox](https://drive.google.com/file/d/1R5psVd6OW7xWNyGWsN9kbK47mzC3YWUA/view?usp=sharing)
+![Creación de la VM en VirtualBox](C:\Users\pc\Downloads\Nueva carpeta\imagen 1)
 
-![ISO montado en la VM](https://drive.google.com/file/d/14igniJFLfl-YEHCRtDKQtwQbNfV2w0sl/view?usp=sharing)
+![ISO montado en la VM](C:\Users\pc\Downloads\Nueva carpeta\imagen 2)
