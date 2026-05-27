@@ -5,6 +5,11 @@ categories: [lab, setup]
 tags: [metasploitable, virtualbox, kali]
 ---
 
+# Encabezado Nivel 1 (H1)
+## Encabezado Nivel 2 (H2)
+### Encabezado Nivel 3 (H3)
+#### Encabezado Nivel 4 (H4)
+
 ## Creación de la VM Metasploitable 3
 
 Metasploitable es una máquina virtual vulnerable diseñada para practicar pruebas de penetración y ciberseguridad en entornos controlados.
