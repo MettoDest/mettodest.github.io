@@ -1,6 +1,6 @@
 ---
 title: "Lab 01 - Instalación de Metasploitable 3"
-date: 2026-05-26 21:50:00 -0500
+date: 2026-05-26 21:50:00
 categories: [lab, setup]
 tags: [metasploitable, virtualbox, kali]
 ---
