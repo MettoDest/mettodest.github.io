@@ -14,7 +14,7 @@ tags: [metasploitable, virtualbox, kali]
 
 Metasploitable es una máquina virtual vulnerable diseñada para practicar pruebas de penetración y ciberseguridad en entornos controlados.
 
-En un laboratorio (“lab”), sirve para simular un sistema real con fallas de seguridad conocidas, permitiendo que los estudiantes o analistas practiquen técnicas de reconocimiento, escaneo, explotación y evaluación de vulnerabilidades de forma segura.
+En un laboratorio, sirve para simular un sistema real con fallas de seguridad conocidas, permitiendo que los estudiantes o analistas practiquen técnicas de reconocimiento, escaneo, explotación y evaluación de vulnerabilidades de forma segura.
 
 Se utiliza comúnmente junto con herramientas como Metasploit Framework, Nmap y distribuciones como Kali Linux para entrenar en hacking ético, análisis de redes y seguridad informática.
 
