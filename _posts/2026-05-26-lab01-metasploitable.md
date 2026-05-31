@@ -29,7 +29,8 @@ Diferencia clave:
 El uso de NAT Network facilita la simulación de entornos reales de red, permitiendo que sistemas como Kali Linux, Windows o servidores virtualizados intercambien tráfico entre ellos, realicen pruebas de conectividad, escaneo y monitoreo, sin exponer directamente las máquinas virtuales a la red local de producción.
 
 ![Configuración de red](https://res.cloudinary.com/dopcqb8wn/image/upload/v1780239089/imagen_3_ijkni5.png)
-
 Esta imagen es solo un ejemplo. La red queda configurada como NatNetwork
+
+
 
 
