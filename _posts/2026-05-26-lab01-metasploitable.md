@@ -19,7 +19,12 @@ Diferencia clave:
 
 . iso → imagen de disco que requiere crear la VM manualmente (Metasploitable)
 
+![Creación de la VM en VirtualBox](https://res.cloudinary.com/dopcqb8wn/image/upload/f_auto,q_auto/imagen_1_wfolda)
+
+![ISO montado en la VM](https://res.cloudinary.com/dopcqb8wn/image/upload/v1780238384/imagen_2_kwm77e.png)
 
 
 ## Configuración de red
+
+El uso de NAT Network facilita la simulación de entornos reales de red, permitiendo que sistemas como Kali Linux, Windows o servidores virtualizados intercambien tráfico entre ellos, realicen pruebas de conectividad, escaneo y monitoreo, sin exponer directamente las máquinas virtuales a la red local de producción.
 
