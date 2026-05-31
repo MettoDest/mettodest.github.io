@@ -23,8 +23,3 @@ Diferencia clave:
 
 ## Configuración de red
 
-[explica la decisión de usar Nat Network]
-
-![Configuración de red](/assets/images/lab01/natnetwork.png)
-
-Esta imagen es solo un ejemplo. La red queda configurada como NatNetwork
