@@ -5,11 +5,6 @@ categories: [lab, setup]
 tags: [metasploitable, virtualbox, kali]
 ---
 
-# Encabezado Nivel 1 (H1)
-## Encabezado Nivel 2 (H2)
-### Encabezado Nivel 3 (H3)
-#### Encabezado Nivel 4 (H4)
-
 ## Creación de la VM Metasploitable 3
 
 Metasploitable es una máquina virtual vulnerable diseñada para practicar pruebas de penetración y ciberseguridad en entornos controlados.
@@ -24,3 +19,16 @@ Diferencia clave:
 
 . iso → imagen de disco que requiere crear la VM manualmente (Metasploitable)
 
+![Creación de la VM en VirtualBox](C:\Users\pc\Downloads\Nueva carpeta\imagen 1.png)
+
+![ISO montado en la VM](C:\Users\pc\Downloads\Nueva carpeta\imagen 2.png)
+
+
+
+## Configuración de red
+
+[explica la decisión de usar Nat Network]
+
+![Configuración de red](/assets/images/lab01/natnetwork.png)
+
+Esta imagen es solo un ejemplo. La red queda configurada como NatNetwork
