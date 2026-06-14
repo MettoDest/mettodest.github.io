@@ -75,7 +75,7 @@ Para explotarlo, un atacante necesitaría controlar este servidor o realizar un 
 
 En términos académicos, esta vulnerabilidad se clasifica como una __falta de control de tasa de intentos__ (lack of rate limiting) o __ausencia de mecanismos de bloqueo en autenticación fallida__. Esto significa que, debido a la configuración predeterminada, el servicio permite intentos ilimitados de autenticación, lo cual expone al sistema a riesgos de ataques de fuerza bruta y ataques de diccionario. En tales ataques, el atacante puede automatizar múltiples combinaciones de nombres de usuario y contraseñas sin ser bloqueado, lo que incrementa las posibilidades de comprometer una cuenta mediante la obtención de credenciales válidas.
 
-# Etapa 3: Acceso
+# 3: Acceso
 
 Si bien ya sabemos que podemos hacer varios intentos para obtener acceso incial al sistema a través del servicio SSH.
 
@@ -118,6 +118,15 @@ set PASS_FIlE /home/user/Downloads/rockyou.txt
 set VERBOSE true
 run
 ```
+
+
+
+
+# 4 : Explotación y Acceso
+
+Tras obtener una combinación de usuario y contraseña valida, se realiza la conexión y la explotación del sistema.
+
+
 
 
 
