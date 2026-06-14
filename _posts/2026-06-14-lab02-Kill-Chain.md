@@ -119,7 +119,7 @@ set VERBOSE true
 run
 ```
 
-![RESULTADO DE CONTRASEÑA] (https://res.cloudinary.com/dopcqb8wn/image/upload/v1781454839/TRABAJANDO_EN_ELLO_b3bdjj.png)
+![Diccionario que usaremos](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781454839/TRABAJANDO_EN_ELLO_b3bdjj.png)
 
 # 4 : Explotación y Acceso
 
