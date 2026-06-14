@@ -59,11 +59,46 @@ Usaremos el comando `sudo nmap -sV -p 22 10.0.2.3`
 
 ![Resultado del Escaneo Detallado](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781443440/Escaneo_detallado_de_servicios_u0ms8v.png)
 
+Analizando el escaneo vemos:
 
+* El servicio detectado es __OpenSSH 7.1__ (protocolo 2.0).
+* El host responde muy rápido (latencia de 0.0017 s).
+* La MAC address indica que es una __máquina virtual de VirtualBox__
+ 
+En conclusión, este escaneo demuestra que __el host está activo y accesible por SSH__, solo que bloquea ciertos tipos de paquetes (como los que usa `traceroute`).
 
+## 2.2 Explotación de la Vulnerabilidad
 
+El escaneo muestra un servidor __OpenSSH 7.1__ corriendo en una máquina VirtualBox. Esta versión es antigua (2015) y, aunque el servidor en sí no tiene vulnerabilidades críticas directas, presenta un riesgo importante para los clientes que se conecten a él. La vulnerabilidad clave es __CVE-2016-0777/CVE-2016-0778__ (roaming), que permite a un servidor malicioso extraer fragmentos de memoria del cliente, pudiendo robar __claves privadas SSH__ u otras credenciales.
 
+Para explotarlo, un atacante necesitaría controlar este servidor o realizar un ataque Man-in-the-Middle. En la práctica, si alguien se conecta desde un cliente OpenSSH vulnerable (versiones 5.4 a 7.1) a esta máquina, podría comprometer sus claves privadas. Esto convierte al host no en el objetivo final, sino en un __trampolín para atacar a los administradores o usuarios__ que lo gestionan.
 
+En términos académicos, esta vulnerabilidad se clasifica como una __falta de control de tasa de intentos__ (lack of rate limiting) o __ausencia de mecanismos de bloqueo en autenticación fallida__. Esto significa que, debido a la configuración predeterminada, el servicio permite intentos ilimitados de autenticación, lo cual expone al sistema a riesgos de ataques de fuerza bruta y ataques de diccionario. En tales ataques, el atacante puede automatizar múltiples combinaciones de nombres de usuario y contraseñas sin ser bloqueado, lo que incrementa las posibilidades de comprometer una cuenta mediante la obtención de credenciales válidas.
+
+# Etapa 3: Acceso
+
+Si bien ya sabemos que podemos hacer varios intentos para obtener acceso incial al sistema a través del servicio SSH.
+
+## 3.1 Descarga de diccionarios
+
+Descargaremos 2 diccionarios uno para los Usernames y otro para los Passwords.
+
+* `top-usernames-shortlist.txt` para Usernames
+* `Rockyou.txt` para Passwords
+
+![Diccionario que usaremos](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781447965/diccionarios_wq5rmm.png)
+
+## 3.2 Enumeración de Usuarios con Metasploit
+
+Para realizar esta acción, vamos a correr un scanner de enumeración con la herramienta Metasploit.
+
+```
+msf console -q
+use auxiliary/scanner/ssh/ssh_enumusers
+set RHOSTS 10.0.2.3
+set USER_FIlE /home/user/Downloads/top-usernames-shortlist.txt
+run
+```
 
 
 
