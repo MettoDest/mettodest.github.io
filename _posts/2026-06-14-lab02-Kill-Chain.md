@@ -36,7 +36,7 @@ En esta imagen podemos identificar 4 IPs
 
 Una vez descubierto la direccion IP de nuestra Metasplotable, procedemos a realizar un escaneo de manera agresiva usando el comando sudo nmap -A -p- 10.0.2.3
 
-![Resultado del escaneo agresivo]()
+![Resultado del escaneo agresivo](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781417233/escaneo_de_red_agresivo_z2po3d.png)
 
 
 
