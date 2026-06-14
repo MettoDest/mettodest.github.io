@@ -194,9 +194,9 @@ Esto nos tiene que mostrar la lista como esta en la siguiente imagen
 En este punto los comando que usaremos en seguida seran los siguientes:
 
 ```
-ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /start'   # iniciamos el shadow copy service
-ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /status'  # verificamos el shadow copy service
-ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /create c'    # creamos una copia del volumen Shadow Copy en la unidad C:\\
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /start'     # iniciamos el shadow copy service
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /status'    # verificamos el shadow copy service
+ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /create c'  # creamos una copia del volumen Shadow Copy en la unidad C:\\
 ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /list'
 ```
 
