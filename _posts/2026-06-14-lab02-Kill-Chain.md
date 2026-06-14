@@ -4,7 +4,7 @@ date: 2026-06-14 00:18:00
 categories: [lab, setup]
 tags: [metasploitable, virtualbox, kali, kill Chain]
 ---
-### 1 RECONOCIMIENTO
+# 1 RECONOCIMIENTO
 ## 1.1 Configuración del Segmento de Red
 
 .En nuestra VM Kali Linux ejecutamos el siguiente comando para visualizar la dirección IP asignada para la interfaz virtual de red Ethernet.
