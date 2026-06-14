@@ -32,10 +32,11 @@ En esta imagen podemos identificar 4 IPs
   . 10.0.2.3 : Nuestro Metasplotable
   . 10.0.2.10: mi propia direccion (kali)
 
+## 1.3 Escaneo Agresivo
 
+Una vez descubierto la direccion IP de nuestra Metasplotable, procedemos a realizar un escaneo de manera agresiva usando el comando sudo nmap -A -p- 10.0.2.3
 
-
-
+![Resultado del escaneo agresivo]()
 
 
 
