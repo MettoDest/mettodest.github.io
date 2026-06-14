@@ -108,7 +108,7 @@ En el resultado obtenido nos indica que el usuario que reconocio es `vagrant`, p
 
 ## 3.3 Ataque de Fuerza Bruta en SSHH
 
-Para esta acción usaremos el siguiente comando, considerando que seguimos dentro del `msf console -q`
+Para esta acción usaremos el siguiente comando, considerando que seguimos dentro del `msfconsole -q`
 
 ```
 use auxiliary/scanner/ssh/ssh_enumusers
