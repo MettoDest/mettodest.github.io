@@ -200,6 +200,16 @@ ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /create 
 ssh vagrant@10.0.2.3 'cscript C:\\Users\\vagrant\\Downloads\\vssown.vbs /list'
 ```
 
+Usando los comandos en orden se tendria el siguiente resultado
+
+![COMANDO A USAR](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782469184/comandos_a_usar_gtjvgu.png)
+
+
+
+
+
+
+
 
 
 
