@@ -9,7 +9,7 @@ tags: [metasploitable, virtualbox, kali, kill Chain, EternalBlue]
 
 ## 1.1 Comenzamos viendo la herramienta que tenemos
 
-Ingresamos el siguiente comando para poder ver la informacion del eternalblue
+Ingresamos el siguiente comando para poder ver la informacion del eternalblue.
 
 ```
 msfconsole -q
