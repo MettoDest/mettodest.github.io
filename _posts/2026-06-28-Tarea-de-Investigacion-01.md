@@ -13,8 +13,7 @@ tags: [OilRig, Investigacion]
 
 | TTP |  Descripción  | Ejecucion | Producto |
 | :--- | :--- | :--- | :---: |
-| T1592 |Es la recopilación de información técnica sobre los sistemas de la víctima (versión del SO, arquitectura, parches de seguridad instalados y software en ejecución).
-Permite al atacante elegir el exploit o la herramienta exacta que funcionará contra ese sistema específico, ahorrando tiempo y evitando fallos. |  |  |
+| T1592 |Es la recopilación de información técnica sobre los sistemas de la víctima (versión del SO, arquitectura, parches de seguridad instalados y software en ejecución). Permite al atacante elegir el exploit o la herramienta exacta que funcionará contra ese sistema específico, ahorrando tiempo y evitando fallos. |  |  |
 | T1583 | Es la acción de adquirir o alquilar servidores, dominios web, VPS o cuentas en la nube para ser utilizados en el ataque. Brinda al atacante una plataforma externa para alojar sus herramientas, páginas de phishing y servidores de comando y control (C2), separando su identidad real de la infraestructura maliciosa. |  |  |
 | T1566.002 | Es una técnica de ingeniería social donde el atacante envía un correo electrónico personalizado a un objetivo específico, conteniendo un enlace malicioso. Permite el acceso inicial a la red de la víctima de forma engañosa. Al hacer clic en el enlace, se descarga malware o se roban credenciales de acceso sin que el usuario se dé cuenta. |  |  |
 | T1053.005 |  Es la creación o modificación de tareas programadas en el sistema operativo Windows para ejecutar un programa malicioso. Otorga persistencia al atacante, asegurando que el malware se reactive automáticamente cada cierto tiempo o cada vez que el equipo se reinicie, incluso si el usuario intenta cerrarlo. |  |  |
