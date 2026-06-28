@@ -22,7 +22,7 @@ Debemos tener como respuesta: 200
 ![RESPUESTA DE OPCION A](https://res.cloudinary.com/dopcqb8wn/image/upload/v1781500894/opcion_a_rbp2rr.png)
 
 ## Opción B (desde Metasploitable3)
-Para realizarlo por esta opción primero debemos conectarnos vía SSH
+Para realizarlo por esta opción primero debemos conectarnos vía SSH.
 
 ```
 ssh vagrant@10.0.2.3
