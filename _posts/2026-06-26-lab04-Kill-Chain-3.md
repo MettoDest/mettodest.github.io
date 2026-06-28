@@ -1,6 +1,6 @@
 ---
 title: "Lab 04 - Kill Chain 3"
-date: 2026-06-26 08:49:00
+date: 2026-06-28 08:49:00
 categories: [lab, setup]
 tags: [metasploitable, virtualbox, kali, kill Chain, EternalBlue]
 ---
@@ -81,7 +81,7 @@ Analizando el resultado obtenido, podemos concluir que el firewall de mi maquina
 - OPCION 1: Desactivar el firewall del windows manualmente y volver a ejecutar el comando.
 - OPCION 2: Desactivarlo desde el kali, usando el usuario y contraseña obtenidos las clases pasadas.
 
-asi que realizaremos la OPCION 2
+asi que realizaremos la OPCION 2:
 
 ### Opción 2
 
@@ -113,7 +113,9 @@ Nos va a pedir la clase de la maquina victima, la cual sabemos que es "vagrant".
 
 Una vez dentro copiamos la linea de codigo largo que aparecio en la ventara anterior.
 
-`powershell.exe -nop -w hidden -c ... (una línea larguísima de código)`
+```
+powershell.exe -nop -w hidden -c ... (una línea larguísima de código)
+```
 
 En mi caso pondremos:
 
