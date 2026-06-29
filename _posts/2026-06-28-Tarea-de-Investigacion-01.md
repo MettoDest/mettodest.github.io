@@ -5,11 +5,9 @@ categories: [Investigacion, setup]
 tags: [OilRig, Investigacion]
 ---
 
+# RECONOCIMIENTO 
 
-
-
-
-
+Se trabajo en una tabla donde tengamos los TTP mencionados con su descripción, ejecución y el producto obtenido.
 
 | TTP |  Descripción  | Ejecución | Producto |
 | :---: | :---: | :---: | :---: |
