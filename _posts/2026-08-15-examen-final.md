@@ -69,3 +69,19 @@ Basándonos en OpenCTI, el perfil de Lazarus Group quedaría así:
 * Capacidad: Bankshot, RATANKBA, Cryptoistic, Responder, TTPs documentadas
 * Infraestructura: Servidores C2 (HTTPS para RATANKBA, TCP para Cryptoistic)
 * Víctima: Bancos, instituciones financieras, entidades de criptomonedas
+
+# Acto 2 — Plan de ataque mapeado a ATT&CK
+
+## Análisis de Superficie de Ataque en Metasploitable3
+
+Basándome en el perfil de Lazarus construido con los datos del OpenCTI, identifico qué TTPs pueden ser reproducidos en el laboratorio y cuáles no.
+
+| Táctica |  Técnica ATT&CK  | Servicio/objetivo en Metasploitable3 | Herramienta |
+| :---: | :---: | :---: | :---: |
+| Initial Access | T1190 - Exploit Public-Facing Application | ElasticSearch (9200) - CVE-2014-3120 | exploits/multi/elasticsearch/script_mvel_rce.rb |
+| Discovery | T1049 - System Network Connections Discovery | Sistema objetivo tras RCE | Meterpreter netstat, arp, route |
+| Lateral Movement | T1021.002 - SMB/Windows Admin Shares | Recursos compartidos ADMIN,C en Metasploitable3 | Meterpreter psexec, smb_login |
+| Exfiltration | T1560.003 - Archive via Custom Method | Archivos sensibles en Metasploitable3 | Meterpreter download, compresión manual |
+| Collection | T1005 - Data from Local System | Archivos, hashes, flags en Metasploitable3 | Meterpreter search, hashdump, download |
+| Credential Access | T1003.001 - OS Credential Dumping: LSASS Memory | Metasploitable3 | hashdump, mimikatz via Meterpreter |
+| Execution | T1059.001 - PowerShell | Sistema objetivo tras RCE | Meterpreter powershell_execute |
