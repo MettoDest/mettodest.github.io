@@ -97,3 +97,6 @@ Basándome en el perfil de Lazarus construido con los datos del OpenCTI, identif
 | T1547.005 - Security Support Provider (SSP) | Requiere persistencia avanzada y manipulación de DLLs del sistema; excede el alcance del examen y podría afectar la estabilidad del laboratorio compartido. |
 | T1486 - Data Encrypted for Impact (Ransomware) | Cifrar datos en el laboratorio podría afectar la disponibilidad del servicio para otros estudiantes y va en contra de las políticas de uso del entorno compartido. |
 | T1585.002 - Email Accounts | No hay infraestructura de correo electrónico en el laboratorio para crear o comprometer cuentas de email. |
+
+
+
