@@ -49,29 +49,23 @@ Basándonos en OpenCTI, el perfil de Lazarus Group quedaría así:
 
 * Responder - Herramienta documentada en el OpenCTI (relación "USES → TOOL → Responder") utilizada para poisoning de protocolos LLMNR, NBT-NS y WPAD, capturando hashes de autenticación en redes locales. Esta herramienta permite a Lazarus cosechar credenciales para movimiento lateral y elevación de privilegios en entornos comprometidos .
 
-## Análisis de Inteligencia y Justificaciones:
+## 5. Análisis de Inteligencia y Justificaciones:
+
 ### Niveles de Inteligencia:
 
 * Táctico: Bankshot, RATANKBA, Cryptoistic, Responder (herramientas y malware específicos)
-
 * Operacional: T1560.003, T1049, T1585.002, T1021.002 (TTPs documentadas)
-
 * Estratégico: Patrón de relaciones USES que muestra un grupo organizado con múltiples capacidades
 
 ### TLP Sugerido:
 
 * TLP:AMBER: Bankshot, RATANKBA, Cryptoistic (malware específico con firmas detectables)
-
 * TLP:GREEN: TTPs documentadas y Responder (herramienta pública)
-
 * Política TLP: El equipo de Inteligencia de Amenazas (TI) o el CISO deben fijar la política final
 
 ### Modelo Diamante:
 
 * Adversario: Lazarus Group
-
 * Capacidad: Bankshot, RATANKBA, Cryptoistic, Responder, TTPs documentadas
-
 * Infraestructura: Servidores C2 (HTTPS para RATANKBA, TCP para Cryptoistic)
-
 * Víctima: Bancos, instituciones financieras, entidades de criptomonedas
