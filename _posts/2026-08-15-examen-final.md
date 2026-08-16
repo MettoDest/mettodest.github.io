@@ -98,5 +98,20 @@ Basándome en el perfil de Lazarus construido con los datos del OpenCTI, identif
 | T1486 - Data Encrypted for Impact (Ransomware) | Cifrar datos en el laboratorio podría afectar la disponibilidad del servicio para otros estudiantes y va en contra de las políticas de uso del entorno compartido. |
 | T1585.002 - Email Accounts | No hay infraestructura de correo electrónico en el laboratorio para crear o comprometer cuentas de email. |
 
+# Acto 3 - Ejecución
 
+## Paso 1 -- Reconocimiento Inicial (T1595.002 - Active Scanning)
+
+Abre una terminal en tu Kali y ejecuta:
+
+```
+# Escaneo para confirmar Metasploitable3
+nmap -sn 10.0.2.0/24
+
+# Escaneo detallado del puerto 9200 (ElasticSearch)
+nmap -p 9200 -sV 10.0.2.3
+
+# Escaneo adicional para ver servicios abiertos en Metasploitable3
+nmap -p- --min-rate 1000 10.0.2.3
+```
 
