@@ -98,9 +98,9 @@ Basándome en el perfil de Lazarus construido con los datos del OpenCTI, identif
 | T1486 - Data Encrypted for Impact (Ransomware) | Cifrar datos en el laboratorio podría afectar la disponibilidad del servicio para otros estudiantes y va en contra de las políticas de uso del entorno compartido. |
 | T1585.002 - Email Accounts | No hay infraestructura de correo electrónico en el laboratorio para crear o comprometer cuentas de email. |
 
-# Acto 3 - Ejecución
+# Acto 3 — Ejecución
 
-## Paso 1 -- Reconocimiento Inicial (T1595.002 - Active Scanning)
+## Paso 1 — Reconocimiento Inicial (T1595.002 - Active Scanning)
 
 Abre una terminal en tu Kali y ejecuta:
 
@@ -128,7 +128,7 @@ Con este comando hacemos un escaneo adicional para ver los servicios abiertos en
 
 ![ESCANEO ADICIONAL](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786844104/ESCANEO_ADICIONAL_qwa2f8.png)
 
-## Paso 2 -- Iniciar Metasploit y Configurar Exploit (T1190 - Exploit Public-Facing Application)
+## Paso 2 — Iniciar Metasploit y Configurar Exploit (T1190 - Exploit Public-Facing Application)
 
 * Iniciaremos el msfconsole
 
@@ -241,3 +241,45 @@ repetimos los comando "shell" y "whoami /priv"
 obtenemos este resultado:
 
 ![CONTROL 2](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786851693/CONTROL_2_noqxwo.png)
+
+# Acto 4 — Defensa
+
+## Paso 1: comprobar la postura defensiva
+
+Como nuestro objetivo fue Metasploitable3 / Windows Server 2008 R2, primero vamos a comprobar qué mecanismos defensivos existen realmente en esa máquina. No vamos a asumir que tiene Sysmon, Defender o determinadas políticas activadas.
+
+Como seguimos en:
+
+```
+meterpreter >
+```
+
+entraremos nuevamente al shell, una vez dentro ejecutaremos estos tres comandos:
+
+```
+sc query EventLog
+```
+
+```
+sc query Sysmon64
+```
+
+```
+auditpol /get /category:*
+```
+
+Obteniendo este resultado
+
+![PASO 1](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786852582/PASO_1_kd8vik.png)
+
+Con esto comprobamos:
+* El registro de eventos de Windows está activo.
+* Sysmon no está instalado en esta Metasploitable3.
+* Hay auditoría de inicios de sesión exitosos y fallidos.
+* La creación de procesos no está siendo auditada.
+
+Esto es muy relevante para nuestro ataque porque durante la cadena hubo:
+
+Elasticsearch → ejecución de Java → Meterpreter → Windows shell
+
+Un defensor tendría mucha menos visibilidad sobre esa cadena si Process Creation está deshabilitado y tampoco existe Sysmon.
