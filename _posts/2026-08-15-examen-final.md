@@ -76,7 +76,9 @@ Basándonos en OpenCTI, el perfil de Lazarus Group quedaría así:
 
 Basándome en el perfil de Lazarus construido con los datos del OpenCTI, identifico qué TTPs pueden ser reproducidos en el laboratorio y cuáles no.
 
-| Táctica |  Técnica ATT&CK  | Servicio/objetivo en Metasploitable3 | Herramienta |
+### Tabla de TTPs Reproducibles
+
+| Táctica | Técnica ATT&CK | Servicio/objetivo en Metasploitable3 | Herramienta |
 | :---: | :---: | :---: | :---: |
 | Initial Access | T1190 - Exploit Public-Facing Application | ElasticSearch (9200) - CVE-2014-3120 | exploits/multi/elasticsearch/script_mvel_rce.rb |
 | Discovery | T1049 - System Network Connections Discovery | Sistema objetivo tras RCE | Meterpreter netstat, arp, route |
@@ -85,3 +87,13 @@ Basándome en el perfil de Lazarus construido con los datos del OpenCTI, identif
 | Collection | T1005 - Data from Local System | Archivos, hashes, flags en Metasploitable3 | Meterpreter search, hashdump, download |
 | Credential Access | T1003.001 - OS Credential Dumping: LSASS Memory | Metasploitable3 | hashdump, mimikatz via Meterpreter |
 | Execution | T1059.001 - PowerShell | Sistema objetivo tras RCE | Meterpreter powershell_execute |
+
+### TTPs de Lazarus NO Reproducibles y Justificación
+
+| Técnica ATT&CK | Razón de Exclusión |
+| :---: | :---: |
+| T1566.001 - Spearphishing Attachment | El laboratorio no tiene un cliente de correo electrónico ni usuarios humanos objetivos para enviar correos maliciosos. Esta técnica requiere interacción social y un entorno de correo configurado. |
+| T1547.001 - Registry Run Keys / Startup Folder | Aunque técnicamente posible, el laboratorio es efímero y no se requiere persistencia para demostrar el objetivo del examen. |
+| T1547.005 - Security Support Provider (SSP) | Requiere persistencia avanzada y manipulación de DLLs del sistema; excede el alcance del examen y podría afectar la estabilidad del laboratorio compartido. |
+| T1486 - Data Encrypted for Impact (Ransomware) | Cifrar datos en el laboratorio podría afectar la disponibilidad del servicio para otros estudiantes y va en contra de las políticas de uso del entorno compartido. |
+| T1585.002 - Email Accounts | No hay infraestructura de correo electrónico en el laboratorio para crear o comprometer cuentas de email. |
